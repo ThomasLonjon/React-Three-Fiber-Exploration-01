@@ -3,40 +3,39 @@ import { useThree, useFrame, extend } from "@react-three/fiber";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import CustomObject from "./CustomObject";
 
-export default function Experience() {
-  extend({ OrbitControls });
+export default function Experience()
+{
+    extend({ OrbitControls })
 
-  const { camera, gl } = useThree();
+    const { camera, gl } = useThree()
 
-  const cubeRef = useRef();
-  const groupRef = useRef();
+    const cubeRef = useRef()
+    const groupRef = useRef()
 
-  useFrame((state, delta) => {
-    cubeRef.current.rotation.y += delta;
-  });
+    useFrame((state, delta) => {cubeRef.current.rotation.y += delta})
 
-  return (
+    return (
     <>
-      <orbitControls args={[camera, gl.domElement]} />
+        <orbitControls args={[camera, gl.domElement]} />
 
-      <group ref={groupRef}>
-        <mesh ref={cubeRef} scale={2} rotation-y={Math.PI * 0.25} position-x={2}>
-          <boxGeometry />
-          <meshBasicMaterial color="mediumpurple" />
+        <group ref={groupRef}>
+            <mesh ref={cubeRef} scale={2} rotation-y={Math.PI * 0.25} position-x={2}>
+                <boxGeometry />
+                <meshBasicMaterial color="mediumpurple" />
+            </mesh>
+
+            <mesh position-x={-2}>
+                <sphereGeometry />
+                <meshBasicMaterial color="orange" />
+            </mesh>
+        </group>
+
+        <mesh position-y={-1} scale={10} rotation-x={-Math.PI * 0.5}>
+            <planeGeometry />
+            <meshBasicMaterial />
         </mesh>
 
-        <mesh position-x={-2}>
-          <sphereGeometry />
-          <meshBasicMaterial color="orange" />
-        </mesh>
-      </group>
-
-      <mesh position-y={-1} scale={10} rotation-x={-Math.PI * 0.5}>
-        <planeGeometry />
-        <meshBasicMaterial />
-      </mesh>
-
-      <CustomObject />
+        <CustomObject />
     </>
-  );
+    )
 }
