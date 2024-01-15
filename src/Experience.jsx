@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import CustomObject from "./CustomObject";
+import { TransformControls, OrbitControls } from "@react-three/drei";
 
 export default function Experience()
 {
@@ -14,10 +13,12 @@ export default function Experience()
         <OrbitControls/>    
 
         <group >
-            <mesh ref={cubeRef} scale={2} rotation-y={Math.PI * 0.25} position-x={2}>
-                <boxGeometry />
-                <meshBasicMaterial color="mediumpurple" />
-            </mesh>
+            <TransformControls>
+                <mesh ref={cubeRef} scale={2} rotation-y={Math.PI * 0.25} position-x={2}>
+                    <boxGeometry />
+                    <meshBasicMaterial color="mediumpurple" />
+                </mesh>
+            </TransformControls>
 
             <mesh position-x={-2}>
                 <sphereGeometry />
@@ -30,7 +31,6 @@ export default function Experience()
             <meshBasicMaterial />
         </mesh>
 
-        <CustomObject />
     </>
     
 }
