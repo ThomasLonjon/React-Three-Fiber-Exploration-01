@@ -1,21 +1,19 @@
 import { useRef } from "react";
-import { useThree, useFrame, extend } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 import CustomObject from "./CustomObject";
 
 export default function Experience()
 {
-
-
-    const { camera, gl } = useThree()
-
+    // implementing rotation for the cube
     const cubeRef = useRef()
-    const groupRef = useRef()
-
     useFrame((state, delta) => {cubeRef.current.rotation.y += delta})
 
-    return (
-    <>
-        <group ref={groupRef}>
+
+    return <>
+        <OrbitControls/>    
+
+        <group >
             <mesh ref={cubeRef} scale={2} rotation-y={Math.PI * 0.25} position-x={2}>
                 <boxGeometry />
                 <meshBasicMaterial color="mediumpurple" />
@@ -34,5 +32,5 @@ export default function Experience()
 
         <CustomObject />
     </>
-    )
+    
 }
