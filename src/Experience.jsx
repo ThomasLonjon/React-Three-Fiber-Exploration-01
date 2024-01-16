@@ -1,11 +1,12 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { OrbitControls, PivotControls } from "@react-three/drei";
+import { Html, OrbitControls, PivotControls } from "@react-three/drei";
 
 export default function Experience()
 {
     // creating Ref
     const cubeRef = useRef()
+    const sphereRef = useRef()
 
     // implementing rotation for the cube
     useFrame((state, delta) => {cubeRef.current.rotation.y += delta})
@@ -14,18 +15,29 @@ export default function Experience()
 
 
     return <>
-        <OrbitControls makeDefault/>    
+        <OrbitControls makeDefault/>  
 
-           
+                  
         <mesh ref={cubeRef} scale={2} rotation-y={Math.PI * 0.25} position-x={2}>
             <boxGeometry />
             <meshBasicMaterial color="mediumpurple" />
         </mesh>
         
-        <PivotControls anchor={[0,0,0]} depthTest={false} lineWidth={1} axisColors={ [ '#9381ff', '#ff4d6d', '#7ae582' ] }> 
-            <mesh position-x={-2}>
+        <PivotControls anchor={[0,0,0]} depthTest={false} lineWidth={1} > 
+            <mesh ref={sphereRef} position-x={-2}>
                 <sphereGeometry />
                 <meshBasicMaterial color="orange" />
+                <Html 
+                    position={[1,1,0]}
+                    wrapperClass="label"
+                    center
+                    distanceFactor={6}
+                    occlude={[sphereRef, cubeRef]}
+
+                >
+                    I am a sphere
+                </Html>
+                    
             </mesh>
         </PivotControls>
         

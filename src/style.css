@@ -8,3 +8,14 @@ body,
   width: 100%;
   overflow: hidden;
 }
+
+.label > div {
+  font-family: Helvetica, Arial;
+  position: absolute;
+  background: #00000080;
+  color: white;
+  padding: 15px;
+  white-space: nowrap;
+  border-radius: 30px;
+  user-select: none;
+}
