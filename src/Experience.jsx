@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Float, Text, Html, OrbitControls, PivotControls } from "@react-three/drei";
+import { useGLTF, Outlines, Float, Text, Html, OrbitControls, PivotControls } from "@react-three/drei";
+
+import ImportedModel from "./ImportedModel";
 
 export default function Experience()
 {
@@ -9,8 +11,7 @@ export default function Experience()
     const sphereRef = useRef()
 
     // implementing rotation for the cube
-    useFrame((state, delta) => {cubeRef.current.rotation.y += delta * 0.25})
-
+    // useFrame((state, delta) => {cubeRef.current.rotation.y += delta * 0.25})
 
 
 
@@ -18,9 +19,10 @@ export default function Experience()
         <OrbitControls makeDefault/>  
 
                   
-        <mesh ref={cubeRef} scale={2} rotation-y={Math.PI * 0.25} position-x={2}>
+        <mesh ref={cubeRef} scale={2} rotation-y={Math.PI * 0.25} position-x={2} position-y={0.07} >
             <boxGeometry />
             <meshBasicMaterial color="mediumpurple" />
+            <Outlines thickness={0.05}  />
         </mesh>
         
         <PivotControls anchor={[0,0,0]} depthTest={false} lineWidth={1} > 
@@ -41,6 +43,7 @@ export default function Experience()
             </mesh>
         </PivotControls>
         
+        <ImportedModel/>
 
 
         <mesh position-y={-1} scale={10} rotation-x={-Math.PI * 0.5}>
