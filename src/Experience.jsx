@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Text, Html, OrbitControls, PivotControls } from "@react-three/drei";
+import { Float, Text, Html, OrbitControls, PivotControls } from "@react-three/drei";
 
 export default function Experience()
 {
@@ -9,7 +9,7 @@ export default function Experience()
     const sphereRef = useRef()
 
     // implementing rotation for the cube
-    // useFrame((state, delta) => {cubeRef.current.rotation.y += delta})
+    useFrame((state, delta) => {cubeRef.current.rotation.y += delta * 0.25})
 
 
 
@@ -48,16 +48,17 @@ export default function Experience()
             <meshBasicMaterial />
         </mesh>
 
-        <Text 
-            font="./Monofett-Regular.ttf"
-            fontSize={0.5}
-            color="black"
-            position-y={2}
-            textAlign="center"
-        >
-            Studio Carto
-        </Text>
-
+        <Float speed={2}>
+            <Text 
+                font="./Monofett-Regular.ttf"
+                fontSize={0.5}
+                color="black"
+                position-y={2}
+                textAlign="center"
+            >
+                Studio Carto
+            </Text>
+        </Float>
     </>
     
 }
